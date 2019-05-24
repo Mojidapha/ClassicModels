@@ -1,43 +1,57 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Columns;
 
 @Entity
 @Table(name = "payments")
 
-public class Payments {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer customerNumber;
-	private String checkNumber;
+public class Payments implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@EmbeddedId
+	private PaymentsId id;
+	@Column(name="paymentDate")
 	private Date paymentDate;
+	@Column(name="amount")
 	private BigDecimal amount;
+//	@Column(insertable=false,updatable=false)
+//	private Long customerNumber;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "customerNumber")
-	    private Customers customers;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("customerNumber")
+	@JoinColumn(name="customerNumber")
+    private Customers customers;
 	
-	public Integer getCustomerNumber() {
-		return customerNumber;
+	public Customers getCustomers() {
+		return customers;
 	}
-	public void setCustomerNumber(Integer customerNumber) {
-		this.customerNumber = customerNumber;
+	public void setCustomers(Customers customers) {
+		this.customers = customers;
 	}
-	public String getCheckNumber() {
-		return checkNumber;
+	public PaymentsId getId() {
+		return id;
 	}
-	public void setCheckNumber(String checkNumber) {
-		this.checkNumber = checkNumber;
+	public void setId(PaymentsId id) {
+		this.id = id;
 	}
 	public Date getPaymentDate() {
 		return paymentDate;

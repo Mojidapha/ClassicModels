@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,32 +11,46 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "products")
 
-public class Products {
+public class Products implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="productCode")
 	private String productCode;
+	@Column(name="productName")
 	private String productName;
-	private String productLine;
+	@Column(name="productScale")
 	private String productScale;
+	@Column(name="productVendor")
 	private String productVendor;
+	@Column(name="productDescription")
 	private String productDescription;
+	@Column(name="quantityInStock")
 	private Integer quantityInStock;
+	@Column(name="buyPrice")
 	private BigDecimal buyPrice;
+	@Column(name="MSRP")
 	private BigDecimal MSRP;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productCode")
-    private Orderdetails orderdetails;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productLine")
     private Productlines productlines;
+
+	public Productlines getProductlines() {
+		return productlines;
+	}
+
+	public void setProductlines(Productlines productlines) {
+		this.productlines = productlines;
+	}
 
 	public String getProductCode() {
 		return productCode;
@@ -50,14 +66,6 @@ public class Products {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-
-	public String getProductLine() {
-		return productLine;
-	}
-
-	public void setProductLine(String productLine) {
-		this.productLine = productLine;
 	}
 
 	public String getProductScale() {

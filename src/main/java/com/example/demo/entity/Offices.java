@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,17 +15,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "offices")
 
-public class Offices {
+public class Offices implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="officeCode")
 	private String officeCode;
+	@Column(name="city")
 	private String city;
+	@Column(name="phone")
 	private String phone;
+	@Column(name="addressLine1")
 	private String addressLine1;
+	@Column(name="addressLine2")
 	private String addressLine2;
+	@Column(name="state")
 	private String state;
+	@Column(name="country")
 	private String country;
+	@Column(name="postalCode")
 	private String postalCode;
+	@Column(name="territory")
 	private String territory;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "offices")

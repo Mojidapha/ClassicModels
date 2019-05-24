@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,16 +17,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employees")
 
-public class Employees {
+public class Employees implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer employeeNumber;
+	@Column(name="employeeNumber")
+	private Long employeeNumber;
+	@Column(name="lastName")
 	private String lastName;
+	@Column(name="firstName")
 	private String firstName;
+	@Column(name="extension")
 	private String extension;
+	@Column(name="email")
 	private String email;
-	private String officeCode;
-	private Integer reportsTo;
+	@Column(name="jobTitle")
 	private String jobTitle;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employees")
@@ -38,13 +48,31 @@ public class Employees {
     @JoinColumn(name = "reportsTo")
     private Employees employees;
 	
-	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "employees")
-	private List<Employees> employees;*/
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employees")
+//	private List<Employees> employees;
 	
-	public Integer getEmployeeNumber() {
+	public List<Customers> getCustomers() {
+		return customers;
+	}
+	public Employees getEmployees() {
+		return employees;
+	}
+	public void setEmployees(Employees employees) {
+		this.employees = employees;
+	}
+	public void setCustomers(List<Customers> customers) {
+		this.customers = customers;
+	}
+	public Offices getOffices() {
+		return offices;
+	}
+	public void setOffices(Offices offices) {
+		this.offices = offices;
+	}
+	public Long getEmployeeNumber() {
 		return employeeNumber;
 	}
-	public void setEmployeeNumber(Integer employeeNumber) {
+	public void setEmployeeNumber(Long employeeNumber) {
 		this.employeeNumber = employeeNumber;
 	}
 	public String getLastName() {
@@ -70,18 +98,6 @@ public class Employees {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getOfficeCode() {
-		return officeCode;
-	}
-	public void setOfficeCode(String officeCode) {
-		this.officeCode = officeCode;
-	}
-	public Integer getReportsTo() {
-		return reportsTo;
-	}
-	public void setReportsTo(Integer reportsTo) {
-		this.reportsTo = reportsTo;
 	}
 	public String getJobTitle() {
 		return jobTitle;

@@ -1,47 +1,31 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "orderdetails")
 
-public class Orderdetails {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer orderNumber;
-	private String productCode;
+public class Orderdetails implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@EmbeddedId
+	private OrderDetailsId id;
+	@Column(name="quantityOrdered")
 	private Integer quantityOrdered;
+	@Column(name="priceEach")
 	private BigDecimal priceEach;
+	@Column(name="orderLineNumber")
 	private Integer orderLineNumber;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderNumber")
-    private Orders orders;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productCode")
-    private Products products;
-	
-	public Integer getOrderNumber() {
-		return orderNumber;
-	}
-	public void setOrderNumber(Integer orderNumber) {
-		this.orderNumber = orderNumber;
-	}
-	public String getProductCode() {
-		return productCode;
-	}
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
-	}
 	public Integer getQuantityOrdered() {
 		return quantityOrdered;
 	}

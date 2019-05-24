@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,25 +11,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "orders")
-public class Orders {
+public class Orders implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@Column(name="orderNumber")
 	private Long orderNumber;
+	@Column(name="orderDate")
 	private Date orderDate;
+	@Column(name="requiredDate")
 	private Date requiredDate;
+	@Column(name="shippedDate")
 	private Date shippedDate;
+	@Column(name="status")
 	private String status;
+	@Column(name="comments")
 	private String comments;
-	private Integer customerNumber;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "orderNumber")
-	private Orderdetails orderdetails;
+//	@OneToOne(mappedBy = "orders", cascade = CascadeType.ALL)
+//	private Orderdetails orderdetails;
+
+//	public Orderdetails getOrderdetails() {
+//		return orderdetails;
+//	}
+//
+//	public void setOrderdetails(Orderdetails orderdetails) {
+//		this.orderdetails = orderdetails;
+//	}
+
+	public Customers getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(Customers customers) {
+		this.customers = customers;
+	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customerNumber")
@@ -78,14 +106,6 @@ public class Orders {
 
 	public void setComments(String comments) {
 		this.comments = comments;
-	}
-
-	public Integer getCustomerNumber() {
-		return customerNumber;
-	}
-
-	public void setCustomerNumber(Integer customerNumber) {
-		this.customerNumber = customerNumber;
 	}
 
 }
