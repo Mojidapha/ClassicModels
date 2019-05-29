@@ -1,9 +1,9 @@
 $( document ).ready(function(){
 	console.log("ready!");
-	getAllFilm(0, 20, 'G')
+	getAllOrders(0, 20, 'G')
 });
 
-function getAllFilm(page, size, rating){
+function getAllOrders(page, size, rating){
 	$.ajax({
 		url: '/classicmodels/api/allOrders', 
 		type: "get",

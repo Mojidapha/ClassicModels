@@ -17,9 +17,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "orders")
 public class Orders implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +44,10 @@ public class Orders implements Serializable{
 //	public void setOrderdetails(Orderdetails orderdetails) {
 //		this.orderdetails = orderdetails;
 //	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "customerNumber")
+	private Customers customers;
 
 	public Customers getCustomers() {
 		return customers;
@@ -56,9 +57,6 @@ public class Orders implements Serializable{
 		this.customers = customers;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customerNumber")
-	private Customers customers;
 
 	public Long getOrderNumber() {
 		return orderNumber;

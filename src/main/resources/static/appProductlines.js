@@ -1,9 +1,9 @@
 $( document ).ready(function(){
 	console.log("ready!");
-	getAllFilm(0, 20, 'G')
+	getAllProductlines(0, 20, 'G')
 });
 
-function getAllFilm(page, size, rating){
+function getAllProductlines(page, size, rating){
 	$.ajax({
 		url: '/classicmodels/api/allProductlines', 
 		type: "get",

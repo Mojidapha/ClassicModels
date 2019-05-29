@@ -1,9 +1,9 @@
 $( document ).ready(function(){
 	console.log("ready!");
-	getAllFilm(0, 20, 'G')
+	getAllEmployees(0, 20, 'G')
 });
 
-function getAllFilm(page, size, rating){
+function getAllEmployees(page, size, rating){
 	$.ajax({
 		url: '/classicmodels/api/allEmployees', 
 		type: "get",
