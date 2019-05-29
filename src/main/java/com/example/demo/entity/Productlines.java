@@ -31,15 +31,6 @@ public class Productlines implements Serializable{
 	@Column(name="image")
 	private String image;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productlines")
-	private List<Products> products;
-	
-	public List<Products> getProducts() {
-		return products;
-	}
-	public void setProducts(List<Products> products) {
-		this.products = products;
-	}
 	public String getProductLine() {
 		return productLine;
 	}

@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "customers")
 
@@ -52,24 +54,10 @@ public class Customers implements Serializable{
 	@Column(name="creditLimit")
 	private BigDecimal creditLimit;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "salesRepEmployeeNumber")
-    private Employees employees;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customers")
-	private List<Orders> orders;
 
-	@OneToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-    private List<Payments> payments;
 	
 
-	public List<Payments> getPayments() {
-		return payments;
-	}
 
-	public void setPayments(List<Payments> payments) {
-		this.payments = payments;
-	}
 
 	public Long getCustomerNumber() {
 		return customerNumber;
@@ -165,22 +153,6 @@ public class Customers implements Serializable{
 
 	public void setCreditLimit(BigDecimal creditLimit) {
 		this.creditLimit = creditLimit;
-	}
-
-	public Employees getEmployees() {
-		return employees;
-	}
-
-	public void setEmployees(Employees employees) {
-		this.employees = employees;
-	}
-
-	public List<Orders> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Orders> orders) {
-		this.orders = orders;
 	}
 	
 }

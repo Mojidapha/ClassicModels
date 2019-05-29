@@ -39,18 +39,6 @@ public class Products implements Serializable{
 	private BigDecimal buyPrice;
 	@Column(name="MSRP")
 	private BigDecimal MSRP;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productLine")
-    private Productlines productlines;
-
-	public Productlines getProductlines() {
-		return productlines;
-	}
-
-	public void setProductlines(Productlines productlines) {
-		this.productlines = productlines;
-	}
 
 	public String getProductCode() {
 		return productCode;

@@ -26,6 +26,16 @@ public class Orderdetails implements Serializable{
 	@Column(name="orderLineNumber")
 	private Integer orderLineNumber;
 	
+	
+	public OrderDetailsId getId() {
+		return id;
+	}
+	public void setId(OrderDetailsId id) {
+		this.id = id;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public Integer getQuantityOrdered() {
 		return quantityOrdered;
 	}

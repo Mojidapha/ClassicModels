@@ -33,20 +33,7 @@ public class Payments implements Serializable{
 	private Date paymentDate;
 	@Column(name="amount")
 	private BigDecimal amount;
-//	@Column(insertable=false,updatable=false)
-//	private Long customerNumber;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("customerNumber")
-	@JoinColumn(name="customerNumber")
-    private Customers customers;
-	
-	public Customers getCustomers() {
-		return customers;
-	}
-	public void setCustomers(Customers customers) {
-		this.customers = customers;
-	}
+
 	public PaymentsId getId() {
 		return id;
 	}

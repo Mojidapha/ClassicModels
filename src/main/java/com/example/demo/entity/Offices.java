@@ -41,9 +41,6 @@ public class Offices implements Serializable{
 	@Column(name="territory")
 	private String territory;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "offices")
-	private List<Employees> employees;
-	
 	public String getOfficeCode() {
 		return officeCode;
 	}

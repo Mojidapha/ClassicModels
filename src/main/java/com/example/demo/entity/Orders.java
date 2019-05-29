@@ -34,29 +34,6 @@ public class Orders implements Serializable{
 	@Column(name="comments")
 	private String comments;
 
-//	@OneToOne(mappedBy = "orders", cascade = CascadeType.ALL)
-//	private Orderdetails orderdetails;
-
-//	public Orderdetails getOrderdetails() {
-//		return orderdetails;
-//	}
-//
-//	public void setOrderdetails(Orderdetails orderdetails) {
-//		this.orderdetails = orderdetails;
-//	}
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customerNumber")
-	private Customers customers;
-
-	public Customers getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(Customers customers) {
-		this.customers = customers;
-	}
-
 
 	public Long getOrderNumber() {
 		return orderNumber;

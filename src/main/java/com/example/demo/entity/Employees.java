@@ -37,38 +37,6 @@ public class Employees implements Serializable {
 	@Column(name="jobTitle")
 	private String jobTitle;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employees")
-	private List<Customers> customers;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "officeCode")
-    private Offices offices;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reportsTo")
-    private Employees employees;
-	
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employees")
-//	private List<Employees> employees;
-	
-	public List<Customers> getCustomers() {
-		return customers;
-	}
-	public Employees getEmployees() {
-		return employees;
-	}
-	public void setEmployees(Employees employees) {
-		this.employees = employees;
-	}
-	public void setCustomers(List<Customers> customers) {
-		this.customers = customers;
-	}
-	public Offices getOffices() {
-		return offices;
-	}
-	public void setOffices(Offices offices) {
-		this.offices = offices;
-	}
 	public Long getEmployeeNumber() {
 		return employeeNumber;
 	}
