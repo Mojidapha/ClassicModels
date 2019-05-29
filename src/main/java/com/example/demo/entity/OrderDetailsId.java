@@ -17,12 +17,12 @@ public class OrderDetailsId implements Serializable{
 	@Column(name = "orderNumber")
     private Long orderNumber;
     @Column(name = "productCode")
-    private Long productCode;
+    private String productCode;
  
     public OrderDetailsId() {
     }
  
-    public OrderDetailsId(Long orderNumber, Long productCode) {
+    public OrderDetailsId(Long orderNumber, String productCode) {
         this.orderNumber = orderNumber;
         this.productCode = productCode;
     }
@@ -35,11 +35,11 @@ public class OrderDetailsId implements Serializable{
 		this.orderNumber = orderNumber;
 	}
 
-	public Long getProductCode() {
+	public String getProductCode() {
 		return productCode;
 	}
 
-	public void setProductCode(Long productCode) {
+	public void setProductCode(String productCode) {
 		this.productCode = productCode;
 	}
 
