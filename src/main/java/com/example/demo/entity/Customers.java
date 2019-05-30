@@ -55,8 +55,6 @@ public class Customers implements Serializable{
 	private BigDecimal creditLimit;
 	
 
-	
-
 
 
 	public Long getCustomerNumber() {

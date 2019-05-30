@@ -1,37 +1,24 @@
-package com.example.demo.entity;
+package model;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "orderdetails")
+import com.example.demo.entity.OrderDetailsId;
 
-public class Orderdetails implements Serializable{
-	
+public class OrderdetailsModel {
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private OrderDetailsId id;
-	@Column(name="quantityOrdered")
 	private Integer quantityOrdered;
-	@Column(name="priceEach")
 	private BigDecimal priceEach;
-	@Column(name="orderLineNumber")
 	private Integer orderLineNumber;
-	
-	
+    private String productCode;
 	public OrderDetailsId getId() {
 		return id;
 	}
 	public void setId(OrderDetailsId id) {
 		this.id = id;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 	public Integer getQuantityOrdered() {
 		return quantityOrdered;
@@ -51,5 +38,15 @@ public class Orderdetails implements Serializable{
 	public void setOrderLineNumber(Integer orderLineNumber) {
 		this.orderLineNumber = orderLineNumber;
 	}
-
+	public String getProductCode() {
+		return productCode;
+	}
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+    
+    
 }
